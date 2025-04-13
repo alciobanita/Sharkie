@@ -1,0 +1,2 @@
+git rm -r --cached Doku/
+git commit -m "Stop tracking Doku directory"
