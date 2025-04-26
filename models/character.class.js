@@ -69,6 +69,6 @@ class Character extends MovableObject {
 
         setInterval(() => {
             this.playAnimation(this.IMAGES_IDLE);
-        }, 60);
+        }, 80);
     }
 }
