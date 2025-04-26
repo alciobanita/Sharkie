@@ -1,7 +1,7 @@
 class Light2 extends MovableObject {
-    y = 0; // Random y position
-    width = 720 * 1.5;// Set the width of the fish
-    height = 500; // Set the height of the fish
+    y = 0; 
+    width = 720 * 1.5;
+    height = 500;
     world;
 
     IMAGES_IDLE = [

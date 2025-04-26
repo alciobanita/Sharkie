@@ -5,10 +5,10 @@ class MovableObject {
     height = 150;
     width = 150;
     imageCache = [];
-    currentImage = 0; // Set the current image index to 0
-    speed = 0.15; // Set the forward speed of the character
-    world; // Reference to the world object
-    otherDirection = false; // Flag to check if the character is moving in the opposite direction
+    currentImage = 0;
+    speed = 0.15; 
+    world; 
+    otherDirection = false; 
 
     loadImage(Path) {
         this.img = new Image();
@@ -24,16 +24,16 @@ class MovableObject {
     }
 
     playAnimation(images) {
-        let i = this.currentImage % images.length; // Calculate the index of the current image
+        let i = this.currentImage % images.length; 
         let path = images[i];
-        this.img = this.imageCache[path]; // Set the image to the current image in the array
-        this.currentImage++; // Increment the current image index
+        this.img = this.imageCache[path]; 
+        this.currentImage++; 
     }
 
     moveLeft() {
         setInterval(() => {
             this.x -= this.speed;
-        }, 1000 / 60); // 10 frames per second
+        }, 1000 / 60);
     }
 
 }

@@ -1,7 +1,7 @@
 class Endboss extends MovableObject {
 
-    height = 500;// Set the height of the endboss
-    width = 500; // Set the width of the endboss
+    height = 500;
+    width = 500;
     y = 0;
 
     IMAGES_IDLE = [
@@ -23,14 +23,13 @@ class Endboss extends MovableObject {
     constructor() {
         super().loadImage(this.IMAGES_IDLE[0]);
         this.loadImages(this.IMAGES_IDLE);
-        // this.x = 720 * 3 + 100;
-        this.x = 200; // Set the initial x position
+        this.x = 720 * 3 + 100;
         this.animate();
     }
 
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_IDLE);
-        }, 180); // 10 frames per second
+        }, 180);
     }
 }

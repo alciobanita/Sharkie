@@ -59,11 +59,11 @@ class Character extends MovableObject {
             }
 
             if (this.y < 0) {
-                this.y = 0; // Prevent going above the top of the screen
+                this.y = 0;
             }
 
             if (this.y > 480 - this.height) {
-                this.y = 480 - this.height; // Prevent going below the bottom of the screen
+                this.y = 480 - this.height;
             }
         }, 1000 / 60);
 

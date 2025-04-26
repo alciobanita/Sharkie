@@ -1,8 +1,8 @@
 class J_Fish_g_sd extends MovableObject {
 
-    width = 50; // Set the width of the fish
-    height = 50; // Set the height of the fish
-
+    width = 50;
+    height = 50;
+    
     IMAGES_IDLE = [
         'img/2.Enemy/2 Jelly fish/Súper dangerous/Green 1.png',
         'img/2.Enemy/2 Jelly fish/Súper dangerous/Green 2.png',

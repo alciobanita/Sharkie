@@ -1,12 +1,12 @@
 class World {
 
     character = new Character();
-    level = level1; // Set the level for the world
+    level = level1; 
     canvas;
     ctx;
     keyboard;
     world;
-    camera_x = 0; // Initial camera position
+    camera_x = 0; 
 
 
     constructor(canvas, keyboard) {
@@ -18,22 +18,20 @@ class World {
     }
 
     setWorld() {
-        this.character.World = this; // Set the world for the character
+        this.character.World = this;
     }
 
     draw() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // Clear the canvas
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); 
+        this.ctx.translate(this.camera_x, 0);
 
-        this.ctx.translate(this.camera_x, 0); // Move the camera to the left
-
-        this.addObjectsToMap(this.level.backgroundObjects); // Corrected property name
+        this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.lights);
         this.addToMap(this.character);
 
-        this.ctx.translate(-this.camera_x, 0); // Reset the camera position
-
-        // Draw() is being called in a loop using requestAnimationFrame
+        this.ctx.translate(-this.camera_x, 0);
+        
         requestAnimationFrame(() => this.draw());
     }
 
@@ -48,13 +46,13 @@ class World {
             this.ctx.save();
             this.ctx.translate(mo.width, 0);
             this.ctx.scale(-1, 1);
-            mo.x = -mo.x; // Invert the x position for the mirrored image
+            mo.x = -mo.x;
         }
 
         this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
 
         if (mo.otherDirection) {
-            mo.x = -mo.x; // Reset the x position to the original value
+            mo.x = -mo.x;
             this.ctx.restore();
         }
     }
