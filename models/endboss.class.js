@@ -15,18 +15,22 @@ class Endboss extends MovableObject {
         'img/2.Enemy/3 Final Enemy/2.floating/8.png',
         'img/2.Enemy/3 Final Enemy/2.floating/9.png',
         'img/2.Enemy/3 Final Enemy/2.floating/10.png',
+        'img/2.Enemy/3 Final Enemy/2.floating/11.png',
+        'img/2.Enemy/3 Final Enemy/2.floating/12.png',
+        'img/2.Enemy/3 Final Enemy/2.floating/13.png',
     ];
 
     constructor() {
         super().loadImage(this.IMAGES_IDLE[0]);
         this.loadImages(this.IMAGES_IDLE);
-        this.x = 720 * 3 + 100; // Set the initial x position
+        // this.x = 720 * 3 + 100;
+        this.x = 200; // Set the initial x position
         this.animate();
     }
 
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_IDLE);
-        }, 100); // 10 frames per second
+        }, 180); // 10 frames per second
     }
 }
