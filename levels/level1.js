@@ -26,7 +26,8 @@ const level1 = new Level(
         new Endboss(),
     ],
     [
-        new Light(),
+        new Light1(),
+        new Light2(),
     ],
     [
         new BackgroundObject('img/3. Background/Layers/5. Water/D2.png', -720),

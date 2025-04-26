@@ -1,6 +1,6 @@
 class BackgroundObject extends MovableObject {
-    width = 720; // Set the width of the background object
-    height = 480; // Set the height of the background object
+    width = 720; 
+    height = 480; 
 
     world;
 
@@ -8,6 +8,6 @@ class BackgroundObject extends MovableObject {
         super().loadImage(imagePath);
 
         this.x = x;
-        this.y = 480 - this.height; // Set the y position to the bottom of the screen minus the height of the object
+        this.y = 480 - this.height;
     }
 }
