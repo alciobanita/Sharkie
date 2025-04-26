@@ -1,8 +1,8 @@
 class Character extends MovableObject {
 
-    height = 150; // Set the height of the character
-    width = 150; // Set the width of the character
-    speed = 10; // Set the forward speed of the character
+    height = 150;
+    width = 150;
+    speed = 10;
 
     IMAGES_IDLE = [
         'img/1.Sharkie/1.IDLE/1.png',
@@ -30,30 +30,45 @@ class Character extends MovableObject {
     constructor() {
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
         this.loadImages(this.IMAGES_IDLE);
+        this.currentImage = 0;
+        this.animate();
     }
 
     animate() {
-
         setInterval(() => {
-            if (this.world.keyboard.RIGHT) {
-
+            if (world.keyboard.RIGHT && this.x < world.level.level_end_x) {
                 this.x += this.speed;
+                this.otherDirection = false;
+            }
+            
+            if (world.keyboard.LEFT && this.x > 0) {
+                this.x -= this.speed;
+                this.otherDirection = true;
             }
 
-        }, 1000 / 60); // 60 frames per second
+            world.camera_x = -this.x + 100;
+        }, 1000 / 60);
 
         setInterval(() => {
-            if (this.world.keyboard.RIGHT) {
-                //swim animation
-                let i = this.currentImage % this.IMAGES_IDLE.length;
-                let path = this.IMAGES_IDLE[i];
-                this.img = this.imageCache[path];
-                this.currentImage++;
+            if (world.keyboard.UP) {
+                this.y -= this.speed;
             }
-        }, 50); // 10 frames per second
 
+            if (world.keyboard.DOWN) {
+                this.y += this.speed;
+            }
+
+            if (this.y < 0) {
+                this.y = 0; // Prevent going above the top of the screen
+            }
+
+            if (this.y > 480 - this.height) {
+                this.y = 480 - this.height; // Prevent going below the bottom of the screen
+            }
+        }, 1000 / 60);
+
+        setInterval(() => {
+            this.playAnimation(this.IMAGES_IDLE);
+        }, 60);
     }
 }
-
-
-

@@ -9,6 +9,8 @@ class Light extends MovableObject {
         'img/3. Background/Layers/1. Light/2.png',
     ];
 
+    world;
+    
     constructor() {
         super().loadImage('img/3. Background/Layers/1. Light/1.png');
 

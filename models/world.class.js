@@ -1,26 +1,13 @@
 class World {
 
     character = new Character();
-    enemies = [
-        new Fish(),
-        new Fish(),
-        new Fish(),
-    ];
-
-    lights = [
-        new Light(),
-    ];
-
-    backgroungObjects = [
-        new BackgroundObject('img/3. Background/Layers/5. Water/D1.png', 0),
-        new BackgroundObject('img/3. Background/Layers/4.Fondo 2/D1.png', 0),
-        new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D1.png', 0),
-        new BackgroundObject('img/3. Background/Layers/2. Floor/D1.png', 0),
-    ];
-
+    level = level1; // Set the level for the world
     canvas;
     ctx;
     keyboard;
+    world;
+    camera_x = 0; // Initial camera position
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -31,19 +18,22 @@ class World {
     }
 
     setWorld() {
-        this.character.world = this; // Set the world property of the character to this world instance
+        this.character.World = this; // Set the world for the character
     }
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // Clear the canvas
 
-        this.addObjectsToMap(this.backgroungObjects);
-        this.addObjectsToMap(this.enemies);
-        this.addObjectsToMap(this.lights);
+        this.ctx.translate(this.camera_x, 0); // Move the camera to the left
+
+        this.addObjectsToMap(this.level.backgroundObjects); // Corrected property name
+        this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.lights);
         this.addToMap(this.character);
 
+        this.ctx.translate(-this.camera_x, 0); // Reset the camera position
 
-        //Draw() is being called in a loop using requestAnimationFrame
+        // Draw() is being called in a loop using requestAnimationFrame
         requestAnimationFrame(() => this.draw());
     }
 
@@ -54,6 +44,18 @@ class World {
     }
 
     addToMap(mo) {
+        if (mo.otherDirection) {
+            this.ctx.save();
+            this.ctx.translate(mo.width, 0);
+            this.ctx.scale(-1, 1);
+            mo.x = -mo.x; // Invert the x position for the mirrored image
+        }
+
         this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
+
+        if (mo.otherDirection) {
+            mo.x = -mo.x; // Reset the x position to the original value
+            this.ctx.restore();
+        }
     }
 }
