@@ -7,26 +7,21 @@ function init() {
     world = new World(canvas, keyboard);
 }
 
-window.addEventListener("keydown", (e) => {
-
+window.addEventListener("keydown", (e) => {    
     if (e.keyCode == 37) {
         keyboard.LEFT = true;
-        isSwimming = true;
     }
     if (e.keyCode == 39) {
         keyboard.RIGHT = true;
-        isSwimming = true;
     }
     if (e.keyCode == 38) {
         keyboard.UP = true;
-        isSwimming = true;
     }
     if (e.keyCode == 40) {
         keyboard.DOWN = true;
-        isSwimming = true;
     }
     if (e.keyCode == 13) {
-        keyboard.ENTER = true;
+        keyboard.ENTER = true;    
     }
     if (e.keyCode == 27) {
         keyboard.ESCAPE = true;
@@ -39,19 +34,15 @@ window.addEventListener("keydown", (e) => {
 window.addEventListener("keyup", (e) => {
     if (e.keyCode == 37) {
         keyboard.LEFT = false;
-        isSwimming = false;
     }
     if (e.keyCode == 39) {
         keyboard.RIGHT = false;
-        isSwimming = false;
     }
     if (e.keyCode == 38) {
         keyboard.UP = false;
-        isSwimming = false;
     }
     if (e.keyCode == 40) {
-        keyboard.DOWN = false;
-        isSwimming = false;
+        keyboard.DOWN = false;  
     }
     if (e.keyCode == 13) {
         keyboard.ENTER = false;

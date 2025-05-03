@@ -35,6 +35,7 @@ class Character extends MovableObject {
     ];
 
     world;
+    isSwimming = false;
 
 
     constructor() {
@@ -50,13 +51,13 @@ class Character extends MovableObject {
             if (world.keyboard.RIGHT && this.x < world.level.level_end_x) {
                 this.x += this.speed;
                 this.otherDirection = false;
-                // this.isSwimming = true;
+                this.isSwimming = true;
             }
 
             if (world.keyboard.LEFT && this.x > 0) {
                 this.x -= this.speed;
                 this.otherDirection = true;
-                // this.isSwimming = true;
+                this.isSwimming = true;
             }
 
             world.camera_x = -this.x + 100;
@@ -65,13 +66,13 @@ class Character extends MovableObject {
         setInterval(() => {
             if (world.keyboard.UP) {
                 this.y -= this.speed;
-                // this.isSwimming = true;
+                this.isSwimming = true;
                 this.isAboveGround() ? this.speedY = 0 : this.speedY = -this.speed;
             }
 
             if (world.keyboard.DOWN) {
                 this.y += this.speed;
-                // this.isSwimming = true;
+                this.isSwimming = true;
             }
 
             if (this.y < 0) {
