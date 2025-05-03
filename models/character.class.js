@@ -89,9 +89,10 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_SWIMMING);
             } 
 
-            if (this.isSwimming == false) {
+            else if (this.isSwimming == false) {
                 this.playAnimation(this.IMAGES_IDLE);
             }
+
             this.isSwimming = false;
         }, 180);
     }
