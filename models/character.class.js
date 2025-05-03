@@ -87,9 +87,12 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.isSwimming == true) {
                 this.playAnimation(this.IMAGES_SWIMMING);
-            } else {
+            } 
+
+            if (this.isSwimming == false) {
                 this.playAnimation(this.IMAGES_IDLE);
             }
+            this.isSwimming = false;
         }, 180);
     }
 }
