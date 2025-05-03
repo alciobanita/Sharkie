@@ -25,25 +25,38 @@ class Character extends MovableObject {
         'img/1.Sharkie/1.IDLE/18.png',
     ];
 
+    IMAGES_SWIMMING = [
+        'img/1.Sharkie/3.SWIM/1.png',
+        'img/1.Sharkie/3.SWIM/2.png',
+        'img/1.Sharkie/3.SWIM/3.png',
+        'img/1.Sharkie/3.SWIM/4.png',
+        'img/1.Sharkie/3.SWIM/5.png',
+        'img/1.Sharkie/3.SWIM/6.png',
+    ];
+
     world;
+
 
     constructor() {
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
         this.loadImages(this.IMAGES_IDLE);
-        this.currentImage = 0;
+        this.loadImages(this.IMAGES_SWIMMING);
+        this.applyGravity();
         this.animate();
     }
 
-    animate() {
+    animate() {       
         setInterval(() => {
             if (world.keyboard.RIGHT && this.x < world.level.level_end_x) {
                 this.x += this.speed;
                 this.otherDirection = false;
+                // this.isSwimming = true;
             }
-            
+
             if (world.keyboard.LEFT && this.x > 0) {
                 this.x -= this.speed;
                 this.otherDirection = true;
+                // this.isSwimming = true;
             }
 
             world.camera_x = -this.x + 100;
@@ -52,10 +65,13 @@ class Character extends MovableObject {
         setInterval(() => {
             if (world.keyboard.UP) {
                 this.y -= this.speed;
+                // this.isSwimming = true;
+                this.isAboveGround() ? this.speedY = 0 : this.speedY = -this.speed;
             }
 
             if (world.keyboard.DOWN) {
                 this.y += this.speed;
+                // this.isSwimming = true;
             }
 
             if (this.y < 0) {
@@ -68,7 +84,11 @@ class Character extends MovableObject {
         }, 1000 / 60);
 
         setInterval(() => {
-            this.playAnimation(this.IMAGES_IDLE);
+            if (this.isSwimming == true) {
+                this.playAnimation(this.IMAGES_SWIMMING);
+            } else {
+                this.playAnimation(this.IMAGES_IDLE);
+            }
         }, 180);
     }
 }
