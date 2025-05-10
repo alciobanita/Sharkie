@@ -148,7 +148,7 @@ class Character extends MoveableObject {
                 this.isSwimming = true;
             }
 
-            world.camera_x = -this.x + 100;
+            world.camera_x = -this.x + 250;
         }, 1000 / 60);
 
         setInterval(() => {

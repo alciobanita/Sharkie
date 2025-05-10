@@ -4,8 +4,8 @@ class ThrowableObject extends MoveableObject {
         super().loadImage('img/1.Sharkie/4.Attack/Bubble trap/Bubble.png');
         this.x = x;
         this.y = y;
-        this.width = 100;
-        this.height = 100;
+        this.width = 25;
+        this.height = 25;
         this.throw();
     }
 
@@ -14,6 +14,7 @@ class ThrowableObject extends MoveableObject {
         this.applyGravity();
 
         setInterval(() => {
+            this.y -= this.speedY;
             this.x += 10;
         }, 25);
     }
