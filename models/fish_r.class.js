@@ -1,4 +1,4 @@
-class Fish_r extends MovableObject {
+class Fish_r extends MoveableObject {
 
     width = 50;
     height = 50;

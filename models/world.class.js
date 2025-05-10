@@ -10,6 +10,7 @@ class World {
     lifeBar = new LifeBar();
     coinBar = new CoinBar();
     poisonBar = new PoisonBar();
+    throwableObjects = [];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -17,23 +18,35 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkCollisions();
+        this.run();
     }
 
     setWorld() {
         this.character.World = this;
     }
 
-    checkCollisions() {
+    run() {
         setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy)) {
-                    this.character.hit();
-                    this.lifeBar.setPercentage(this.character.energy);
-                }
-            });
+            this.checkCollisions();  
+            this.checkThrow();    
         }, 1000);
     }
+
+    checkCollisions() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                this.character.hit();
+                this.lifeBar.setPercentage(this.character.energy);
+            }
+        });
+    }
+
+    checkThrow() {
+        if (this.keyboard.D) {
+            let bubble = new ThrowableObject(this.character.x + 100, this.character.y + 50);
+            this.throwableObjects.push(bubble);
+        }
+     }
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -41,7 +54,7 @@ class World {
         this.addObjectsToMap(this.level.backgroundObjects);
         
         this.ctx.translate(-this.camera_x, 0);
-        // Space for fixed objects
+
         this.addToMap(this.lifeBar);
         this.addToMap(this.coinBar);
         this.addToMap(this.poisonBar);
@@ -50,6 +63,7 @@ class World {
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.lights);
+        this.addObjectsToMap(this.throwableObjects);
 
         this.ctx.translate(-this.camera_x, 0);
 

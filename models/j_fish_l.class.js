@@ -1,4 +1,4 @@
-class J_Fish_l extends MovableObject {
+class J_Fish_l extends MoveableObject {
 
     width = 50;
     height = 50;

@@ -1,4 +1,4 @@
-class Light1 extends MovableObject {
+class Light1 extends MoveableObject {
     y = 0; 
     width = 720 * 1.5;
     height = 500; 
