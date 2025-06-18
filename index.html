@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sharkie</title>
-    <link rel="icon" type="image/png" href="img\1.Sharkie\1.IDLE\2.png">
+    <link rel="icon" type="image/png" href="img\\1.Sharkie\\1.IDLE\\2.png">
 
     <link rel="stylesheet" href="style.css">
 
@@ -13,6 +13,7 @@
     <script src="./models/life-bar.class.js"></script>
     <script src="./models/coin-bar.class.js"></script>
     <script src="./models/poison-bar.class.js"></script>
+    <script src="./models/button.class.js"></script>
     <script src="./models/moveable-object.class.js"></script>
     <script src="./models/character.class.js"></script>
     <script src="./models/fish_g.class.js"></script>
@@ -31,20 +32,28 @@
     <script src="./models/endboss.class.js"></script>
     <script src="./models/throwable-object.class.js"></script>
 
-
     <script src="./levels/level1.js"></script>
     <script src="./js/game.js"></script>
-
-
-
 </head>
 
 <body onload="init()">
     <h1>Sharkie</h1>
 
-    <canvas id="canvas" width="720" height="480">
+    <!-- Background Music -->
+    <audio id="backgroundMusic" loop preload="auto">
+        <source src="./audio/baby-shark.mp3" type="audio/mpeg">
+        Your browser does not support the audio element. Please try downloading the audio file <a
+            href="audio/baby-shark.mp3" download>here</a> or use a different browser.
+    </audio>
 
-    </canvas>
+    <!-- Canvas Container for relative positioning -->
+    <div class="canvas-container">
+        <canvas id="canvas" width="720" height="480"></canvas>
+        <button class="controls" id="musicButton" onclick="toggleBackgroundMusic()">
+            <img class="icon" src="./img/6.Botones/Controls/play.png" alt="Play Music">
+        </button>
+    </div>
+
 </body>
 
 </html>

@@ -65,3 +65,20 @@ window.addEventListener("keyup", (e) => {
         keyboard.D = false;
     }
 });
+
+let isMusicPlaying = false;
+
+function toggleBackgroundMusic() {
+    let audio = document.getElementById('backgroundMusic');
+    let button = document.getElementById('musicButton');
+    if (!isMusicPlaying) {
+        audio.play().then(() => {
+            isMusicPlaying = true;
+        }).catch(error => {
+            alert('Playback failed. Please interact with the page or check your browser settings.');
+        });
+    } else {
+        audio.pause();
+        isMusicPlaying = false;
+    }
+}
