@@ -64,6 +64,7 @@ window.addEventListener("keyup", (e) => {
 
 
 let isMusicPlaying = false;
+let isFullscreen = false;
 
 function toggleBackgroundMusic() {
     let audio = document.getElementById('backgroundMusic');
@@ -82,6 +83,69 @@ function toggleBackgroundMusic() {
         button.style.filter = 'grayscale(100%)';
     }
 }
+
+function toggleFullscreen() {
+    const canvas = document.getElementById('canvas');
+    const button = document.getElementById('fullscreenButton');
+    const buttonIcon = button.querySelector('.icon');
+
+    if (!isFullscreen) {
+        // Request fullscreen
+        const docElm = document.documentElement;
+
+        if (docElm.requestFullscreen) {
+            docElm.requestFullscreen();
+        } else if (docElm.webkitRequestFullscreen) { // Safari
+            docElm.webkitRequestFullscreen();
+        } else if (docElm.mozRequestFullScreen) { // Firefox
+            docElm.mozRequestFullScreen();
+        } else if (docElm.msRequestFullscreen) { // IE/Edge
+            docElm.msRequestFullscreen();
+        }
+    } else {
+        // Exit fullscreen
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) { // Safari
+            document.webkitExitFullscreen();
+        } else if (document.mozCancelFullScreen) { // Firefox
+            document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) { // IE/Edge
+            document.msExitFullscreen();
+        }
+    }
+}
+
+// Listen for fullscreen change events to update button state
+function handleFullscreenChange() {
+    const button = document.getElementById('fullscreenButton');
+    const buttonIcon = button.querySelector('.icon');
+    const canvas = document.getElementById('canvas');
+
+    // Check if we're in fullscreen mode
+    const fullscreenElement = document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.mozFullScreenElement ||
+        document.msFullscreenElement;
+
+    if (fullscreenElement) {
+        isFullscreen = true;
+        buttonIcon.src = './img/6.Botones/Controls/compress.png'; // You'll need a compress/minimize icon
+        buttonIcon.alt = 'Exit Fullscreen';
+        canvas.classList.add('fullscreen');
+    } else {
+        isFullscreen = false;
+        buttonIcon.src = './img/6.Botones/Controls/expand.png';
+        buttonIcon.alt = 'Toggle Fullscreen';
+        canvas.classList.remove('fullscreen');
+    }
+}
+
+// Add event listeners for fullscreen change events (cross-browser)
+document.addEventListener('fullscreenchange', handleFullscreenChange);
+document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+document.addEventListener('MSFullscreenChange', handleFullscreenChange);
 
 window.addEventListener('DOMContentLoaded', () => {
     let audio = document.getElementById('backgroundMusic');

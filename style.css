@@ -33,6 +33,19 @@ canvas {
     max-height: 600px;
 }
 
+/* Fullscreen canvas styling */
+canvas.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: none !important;
+    max-height: none !important;
+    z-index: 9999;
+    border-radius: 0;
+}
+
 @font-face {
     font-family: 'LuckiestGuy';
     src: url("/img/5.Font/Luckiest_Guy/LuckiestGuy-Regular.ttf");
@@ -62,6 +75,11 @@ h1 {
     background: none;
     border: none;
     padding: 0;
+}
+
+/* Position fullscreen button below music button */
+.fullscreen-btn {
+    top: 92px;
 }
 
 .icon {
