@@ -50,6 +50,7 @@ h1 {
 }
 
 .controls {
+    cursor: pointer;
     left: 90%;
     transform: translateY(-50%);
     display: flex;

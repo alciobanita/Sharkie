@@ -1,10 +1,6 @@
 let canvas;
-
-
 let world;
-
 let keyboard = new Keyboard();
-
 
 function init() {
     canvas = document.getElementById('canvas');
@@ -66,6 +62,7 @@ window.addEventListener("keyup", (e) => {
     }
 });
 
+
 let isMusicPlaying = false;
 
 function toggleBackgroundMusic() {
@@ -74,11 +71,33 @@ function toggleBackgroundMusic() {
     if (!isMusicPlaying) {
         audio.play().then(() => {
             isMusicPlaying = true;
+            button.style.backgroundColor = '';
+            button.style.filter = '';
         }).catch(error => {
             alert('Playback failed. Please interact with the page or check your browser settings.');
         });
     } else {
         audio.pause();
         isMusicPlaying = false;
+        button.style.filter = 'grayscale(100%)';
     }
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+    let audio = document.getElementById('backgroundMusic');
+    let button = document.getElementById('musicButton');
+    if (audio) {
+        audio.play().then(() => {
+            isMusicPlaying = true;
+            if (button) {
+                button.style.backgroundColor = '';
+                button.style.filter = '';
+            }
+        }).catch(() => {
+            isMusicPlaying = false;
+            if (button) {
+                button.style.filter = 'grayscale(100%)';
+            }
+        });
+    }
+});
